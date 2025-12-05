@@ -38,8 +38,11 @@ def user_login():
 def register():
         register = request.get_json()
         users.append(register)
-        print(users)
-        return {"status": "ok"}
+        if register not in users:
+                return {"status": "404"}
+        else:
+                print(users)
+                return {"status": "ok"}
         
 users = []
 
@@ -48,8 +51,11 @@ users = []
 @app.route('/real_login', methods=['POST'])
 def real_login():
         login_real = request.get_json()
-        print(login_real)
-        return {"status": "ok"}
+        if login_real in users:
+                print(login_real)               # this is where we can do things with our user, after they succesfully log in
+                return {"status": "ok"}
+        else:
+                return {"status": "404"}
 
 # This is currently running our backend in debug mode, so that when changes are made they update automatically
 if __name__ == '__main__':
