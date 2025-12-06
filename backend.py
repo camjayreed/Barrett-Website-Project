@@ -8,7 +8,7 @@ CORS(app)
 
 @app.route("/")
 def hello_world():
-        return "This is the homepage"
+        return render_template("index.html")
 
 # When homepage button is pressed this will just return some text to our terminal
 @app.get('/button_pressed')
