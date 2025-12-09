@@ -1,4 +1,23 @@
 
+// Function to capitalize users name
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
+// Display current logged in user
+async function check_current_user() {
+    const response = await fetch("http://127.0.0.1:5000/current_user", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" }})
+
+    const data = await response.json()
+    console.log(data)
+
+    document.getElementById("user").innerText = `Welcome: ${capitalize(data.username)}`;
+}
+
+
+
 // Homepage api button
 document.getElementById("bad_button").addEventListener("click", apibuttonpress);
 function apibuttonpress() {
@@ -16,25 +35,3 @@ function apisendtext() {
         body: text_data,
      
 })}
-
-
-// Homepage "fake" login
-document.getElementById("login_submit").addEventListener("click", apilogin)
-function apilogin() {
-    const username = document.getElementById("login_box").value
-    const password = document.getElementById("password_box").value
-
-    const login = {
-       username: username,
-       password: password,
-    };
-
-    fetch('http://127.0.0.1:5000/user_login', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(login),
-    })
-     
-}
-
-

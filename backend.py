@@ -24,15 +24,9 @@ def send_text():
         print(f"User Entered: {decoded_string}")
         return 'status: ok'
 
-# When a user enters a fake login on our homepage this will grab the username and password as json data and print them out to our terminal
-# with a properly assigned key value pair
-@app.route('/user_login', methods=['POST'])
-def user_login():
-        login = request.get_json()
-        print(login)
-        return {"status": "ok"}
-
+# storing registered users here
 users = []
+current_user = []
 
 # this is where our user can create and account and have it added to the serverside for login
 @app.route('/register', methods=['POST'])
@@ -44,10 +38,7 @@ def register():
 
     users.append(user)
     print(users)
-    return {"status": "ok"}, 200
-        
-
-
+    return {"status": "ok"}, 200  
 
 # this is where our real users login information is handled
 @app.route('/real_login', methods=['POST'])
@@ -56,10 +47,22 @@ def real_login():
 
     if login_real in users:
             print(login_real)               # this is where we can do things with our user, after they succesfully log in
+            global current_user
+            current_user = login_real
 
             return jsonify({"status": "ok"}), 200
     else:
             return jsonify({"status": "error", "message": "Invalid username or password"}), 401
+    
+@app.route('/current_user', methods=['POST'])
+def current_user_check():
+
+    if current_user:
+        print("sending current user")
+        return jsonify(current_user), 200
+    
+    else:
+        return jsonify({"status": "error", "message": "user does not exist"})
 
 # This is currently running our backend in debug mode, so that when changes are made they update automatically
 if __name__ == '__main__':

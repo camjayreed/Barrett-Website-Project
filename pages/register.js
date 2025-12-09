@@ -14,5 +14,7 @@ function api_register() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(login),
     })
+
+    window.location.replace("/Barrett-Website-Project/templates/index.html");
      
 }
