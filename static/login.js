@@ -20,7 +20,7 @@ async function api_login_real() {
 
     if (data.status === "ok") {
         // let them in
-        window.location.replace("/Barrett-Website-Project/templates/index.html");
+        window.location.replace("/");
     } else {
         // reject login
         console.log("Login failed");

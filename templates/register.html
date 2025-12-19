@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 </head>
+
 <body>
-    
+
     <h1>Please register here!</h1>
 
     <label for="register_user">Username</label>
@@ -19,9 +21,10 @@
 
     <button id="register_submit">Submit</button>
 
-    <a href="/Barrett-Website-Project/templates/index.html">Go Home</a>
+    <a href="/">Go Home</a>
 
-    <script src="/Barrett-Website-Project/pages/register.js"> </script>
+    <script src="{{ url_for('static', filename='register.js' ) }}"> </script>
 
 </body>
+
 </html>

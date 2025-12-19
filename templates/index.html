@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homepage</title>
-    <link
-      rel="stylesheet"
-      href="/Barrett-Website-Project/static/style.css"
-    />
-  </head>
-  <body onload="check_current_user()">
-    <h1 id="user">Welcome: </h1>
 
-    <a href="/Barrett-Website-Project/pages/login.html">Login</a>
-    <a href="/Barrett-Website-Project/pages/register.html">Register</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homepage</title>
 
-    <h2>Send text to server</h2>
-    <input type=" " id="text_box" /> <button id="text_send">Enter</button>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
+</head>
 
-    <h3>Do not click the button</h3>
+<body onload="check_current_user()">
+  <h1 id="user">Welcome: </h1>
 
-    <button id="bad_button">Seriously DO NOT PRESS</button>
+  <a href="/login">Login</a>
+  <a href="register">Register</a>
 
-    <script src="/Barrett-Website-Project/static/scripts.js"></script>
-  </body>
+  <h2>Send text to server</h2>
+  <input type=" " id="text_box" /> <button id="text_send">Enter</button>
+
+  <h3>Do not click the button</h3>
+
+  <button id="bad_button">Seriously DO NOT PRESS</button>
+
+  <script src="{{ url_for('static', filename='scripts.js' ) }}"> </script>
+</body>
+
 </html>

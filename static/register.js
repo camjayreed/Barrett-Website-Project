@@ -15,6 +15,8 @@ function api_register() {
         body: JSON.stringify(login),
     })
 
-    window.location.replace("/Barrett-Website-Project/templates/index.html");
+    window.setTimeout(() => { window.location.replace("/");}, 100) // wait 100ms then redirect to root 
+
+   
      
 }
