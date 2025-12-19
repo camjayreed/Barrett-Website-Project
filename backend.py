@@ -1,7 +1,9 @@
 from flask import Flask, render_template
 from flask_cors import CORS
 from flask import request, jsonify
+import sqlite3
 import json
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -9,6 +11,13 @@ CORS(app)
 @app.route("/")
 def hello_world():
         return render_template("index.html")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) #
+DB_PATH = os.path.join(BASE_DIR, "database.db")       # this section is gpt code, becuase i couldnt find out how to run the db file in my project folder
+print("USING DB FILE:", DB_PATH)                      # before this it wanted to make one outside of it everytime i ran my backend
+
+con = sqlite3.connect(DB_PATH)
+cur = con.cursor()
 
 # When homepage button is pressed this will just return some text to our terminal
 @app.get('/button_pressed')
@@ -34,11 +43,20 @@ def register():
     user = request.get_json()
 
     if user in users:
-        return {"status": "exists"}, 401
 
-    users.append(user)
-    print(users)
-    return {"status": "ok"}, 200  
+        return {"status": "exists"}, 401
+    
+    else:
+        users.append(user)
+        print(users)
+
+        cur.execute(
+                "INSERT INTO users (username, password) VALUES (?, ?)",
+                (user["username"], user["password"])
+        )
+        con.commit()
+
+        return {"status": "ok"}, 200  
 
 # this is where our real users login information is handled
 @app.route('/real_login', methods=['POST'])
