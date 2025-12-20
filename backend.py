@@ -23,16 +23,23 @@ def render_template_page():
     return render_template(template)
 
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  #
+# this section is gpt code, becuase i couldnt find out how to run the db file in my project folder
+# # before this it wanted to make one outside of it everytime i ran my backend
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(
-    BASE_DIR, "database.db"
-)  # this section is gpt code, becuase i couldnt find out how to run the db file in my project folder
-print(
-    "USING DB FILE:", DB_PATH
-)  # before this it wanted to make one outside of it everytime i ran my backend
+    BASE_DIR,
+    "database.db",
+)
+print("USING DB FILE:", DB_PATH)
 
 con = sqlite3.connect(DB_PATH, check_same_thread=False)
 cur = con.cursor()
+
+# making a table on launch if it doesnt exist, so people without the database wont die
+cur.execute(
+    """CREATE TABLE IF NOT EXISTS users
+            (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL UNIQUE)"""
+)
 
 
 # When homepage button is pressed this will just return some text to our terminal
@@ -60,19 +67,25 @@ current_user = []
 @app.route("/register", methods=["POST"])
 def register():
     user = request.get_json()
+    
+    cur.execute("SELECT * FROM users")
+    rows = cur.fetchall()
+    user_fixed = tuple(user.values())
 
-    if user in users:
-        return {"status": "exists"}, 401
+    for x in rows:
+        if user_fixed == x[1:]:
+            print("user already exists")
+            return {"status": "exists"}, 401
 
     else:
-        users.append(user)
-        print(users)
-
         cur.execute(
             "INSERT INTO users (username, password) VALUES (?, ?)",
             (user["username"], user["password"]),
         )
         con.commit()
+
+        for row in cur.execute("""SELECT * FROM  users"""):
+            print(row)
 
         return {"status": "ok"}, 200
 
@@ -91,11 +104,13 @@ def real_login():
 
         return jsonify({"status": "ok"}), 200
     else:
-        return jsonify(
-            {"status": "error", "message": "Invalid username or password"}
-        ), 401
+        return (
+            jsonify({"status": "error", "message": "Invalid username or password"}),
+            401,
+        )
 
 
+# my interesting implementation of displaying the current logged in user on the homepage
 @app.route("/current_user", methods=["POST"])
 def current_user_check():
     if current_user:

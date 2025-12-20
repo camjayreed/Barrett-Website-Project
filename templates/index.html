@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homepage</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css' ) }}"
+    />
+  </head>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css' ) }}" />
-</head>
+  <body onload="check_current_user()">
+    <h1 id="user">Welcome:</h1>
 
-<body onload="check_current_user()">
-  <h1 id="user">Welcome: </h1>
+    <a href="/login">Login</a>
+    <a href="register">Register</a>
 
-  <a href="/login">Login</a>
-  <a href="register">Register</a>
+    <h2>Send text to server</h2>
+    <input type=" " id="text_box" /> <button id="text_send">Enter</button>
 
-  <h2>Send text to server</h2>
-  <input type=" " id="text_box" /> <button id="text_send">Enter</button>
+    <h3>Do not click the button</h3>
 
-  <h3>Do not click the button</h3>
+    <button id="bad_button">Seriously DO NOT PRESS</button>
 
-  <button id="bad_button">Seriously DO NOT PRESS</button>
-
-  <script src="{{ url_for('static', filename='scripts.js' ) }}"> </script>
-</body>
-
+    <script src="{{ url_for('static', filename='scripts.js' ) }}"></script>
+  </body>
 </html>
