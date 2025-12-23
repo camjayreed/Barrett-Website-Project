@@ -4,6 +4,7 @@ from flask import request, jsonify
 import sqlite3
 import json
 import os
+import bcrypt
 
 app = Flask(__name__)
 CORS(app)
@@ -38,7 +39,7 @@ cur = con.cursor()
 # making a table on launch if it doesnt exist, so people without the database wont die
 cur.execute(
     """CREATE TABLE IF NOT EXISTS users
-            (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL UNIQUE)"""
+            (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL)"""
 )
 
 
@@ -67,8 +68,8 @@ current_user = []
 @app.route("/register", methods=["POST"])
 def register():
     user = request.get_json()
-    
-    cur.execute("SELECT * FROM users")
+
+    cur.execute(f"SELECT * FROM users WHERE username = '{user['username']}'")
     rows = cur.fetchall()
     user_fixed = tuple(user.values())
 
@@ -78,9 +79,14 @@ def register():
             return {"status": "exists"}, 401
 
     else:
+        password = user["password"]
+        bytes = password.encode("utf-8")
+        salt = bcrypt.gensalt()
+        hash = bcrypt.hashpw(bytes, salt)
+
         cur.execute(
             "INSERT INTO users (username, password) VALUES (?, ?)",
-            (user["username"], user["password"]),
+            (user["username"], hash),
         )
         con.commit()
 
@@ -95,14 +101,14 @@ def register():
 def real_login():
     login_real = request.get_json()
 
-    if login_real in users:
-        print(
-            login_real
-        )  # this is where we can do things with our user, after they succesfully log in
-        global current_user
-        current_user = login_real
+    cur.execute(f"SELECT * FROM users WHERE username = '{login_real['username']}'")
+    rows = cur.fetchall()
+    user_fixed = tuple(login_real.values())
 
-        return jsonify({"status": "ok"}), 200
+    for x in rows:
+        if user_fixed[0] == x[1] and bcrypt.checkpw(user_fixed[1].encode("utf-8"), x[2]):
+            print("user logged in")
+            return {"status": "ok"}, 200
     else:
         return (
             jsonify({"status": "error", "message": "Invalid username or password"}),
