@@ -7,3 +7,5 @@ A button that talks to the backend using an api call, when pressed the backend r
 A text input that sends the users input to the backend on pressing submit, the backend will receive the request and print out the submitted text.
 
 A username and password form that sends the values to the backend as a JSON object on submit. The backend receives the payload and can access the username and password separately for any desired logic.
+
+Implemented full user registration and login, storing user data in a persistent database with securely hashed credentials.
