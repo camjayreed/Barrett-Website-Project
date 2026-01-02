@@ -1,6 +1,12 @@
 Current:
-Make it so that when we login we find a username that matches the current one entered, 
-then we need to see if the password the user entered is == to the hashed password using bcrypt.checkpw
+If a user is logged in, show a create article button
+
+Ability to create an article, save it to a database and view it
+
+if logged in user == user who created the article then the 
+    user may delete their own article
+
+
 
 Future:
 
@@ -9,6 +15,7 @@ Completed:
 Made it so that when a user registers in were only checking against specific usernames in our table instead of all of the data
 Write login logic that works with database
 Implement password hasing and salting when registering an account
+Make it so when the user logs in we check the entered password vs the hashed db password
 
 
 

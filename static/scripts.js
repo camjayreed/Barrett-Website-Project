@@ -14,7 +14,7 @@ async function check_current_user() {
   console.log(data);
 
   document.getElementById("user").innerText = `Welcome: ${capitalize(
-    data.username
+    data
   )}`;
 }
 

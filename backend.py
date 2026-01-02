@@ -100,13 +100,14 @@ def register():
 @app.route("/real_login", methods=["POST"])
 def real_login():
     login_real = request.get_json()
-
+    global current_user
     cur.execute(f"SELECT * FROM users WHERE username = '{login_real['username']}'")
     rows = cur.fetchall()
     user_fixed = tuple(login_real.values())
 
     for x in rows:
         if user_fixed[0] == x[1] and bcrypt.checkpw(user_fixed[1].encode("utf-8"), x[2]):
+            current_user = x[1]
             print("user logged in")
             return {"status": "ok"}, 200
     else:
@@ -130,3 +131,5 @@ def current_user_check():
 # This is currently running our backend in debug mode, so that when changes are made they update automatically
 if __name__ == "__main__":
     app.run(debug=True)
+
+
