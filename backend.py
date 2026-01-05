@@ -36,10 +36,14 @@ print("USING DB FILE:", DB_PATH)
 con = sqlite3.connect(DB_PATH, check_same_thread=False)
 cur = con.cursor()
 
-# making a table on launch if it doesnt exist, so people without the database wont die
+# making a table on launch if it doesnt exist, so people without the database wont suffer the wrath of 1 million errors
 cur.execute(
     """CREATE TABLE IF NOT EXISTS users
-            (id INTEGER PRIMARY KEY AUTOINCREMENT, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL)"""
+            (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL)"""
+)
+cur.execute(
+    """CREATE TABLE IF NOT EXISTS articles
+    (id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, link VARCHAR(255) NOT NULL)"""
 )
 
 
@@ -106,7 +110,9 @@ def real_login():
     user_fixed = tuple(login_real.values())
 
     for x in rows:
-        if user_fixed[0] == x[1] and bcrypt.checkpw(user_fixed[1].encode("utf-8"), x[2]):
+        if user_fixed[0] == x[1] and bcrypt.checkpw(
+            user_fixed[1].encode("utf-8"), x[2]
+        ):
             current_user = x[1]
             print("user logged in")
             return {"status": "ok"}, 200
@@ -128,8 +134,28 @@ def current_user_check():
         return jsonify({"status": "error", "message": "user does not exist"})
 
 
+@app.route("/article_upload", methods=["POST"])
+def article_upload():
+    article = request.get_json()
+    print(article)
+
+    if article:
+        username = article["username"]
+        link = article["link"]
+
+        cur.execute(
+            "INSERT INTO articles (username, link) VALUES (?, ?)",
+            (username, link),
+        )
+        con.commit()
+
+        return {"status": "ok"}, 200
+    
+    else:
+        return ({"status": "error", "message": "username or link invalid"}), 400
+
+
+
 # This is currently running our backend in debug mode, so that when changes are made they update automatically
 if __name__ == "__main__":
     app.run(debug=True)
-
-

@@ -1,0 +1,50 @@
+/* body of the website */
+body {
+    background-image: linear-gradient(to left, #2e70b8, #407ab8);
+}
+
+/* Welcome: */
+h1 {
+    position: relative;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+/* links at the top of the site */
+a {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+/* login position */
+#login {
+
+}
+
+/* Send text to server */
+h2 {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+
+}
+
+/* Send text to server button */
+#text_send {
+    cursor: pointer;
+}
+
+/* Do not click the button */
+h3 {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+/* Do not click the button button */
+#bad_button {
+    position: fixed;
+    top: 205px;
+    left: 200px;
+    
+    cursor: pointer;
+}
+

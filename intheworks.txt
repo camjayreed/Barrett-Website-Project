@@ -1,14 +1,23 @@
 Current:
-If a user is logged in, show a create article button
 
-Ability to create an article, save it to a database and view it
+i think articles will consist of a table holding title, user, text, and maybe comments 
 
 if logged in user == user who created the article then the 
     user may delete their own article
 
 
 
+
 Future:
+
+
+
+
+Ideas:
+Make it so the do not click button redirects you to a blue screen with a loading bar to delete system 32
+Display a real time terminal on the right side of the index site
+
+
 
 
 Completed:
@@ -16,9 +25,8 @@ Made it so that when a user registers in were only checking against specific use
 Write login logic that works with database
 Implement password hasing and salting when registering an account
 Make it so when the user logs in we check the entered password vs the hashed db password
-
-
-
+If a user is logged in, show a create article button - 1/3/26 @ 2:47am
+Ability to create an article, and save it to a database - 1.4.26 @ 3:57am
 
 
 

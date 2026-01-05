@@ -14,16 +14,17 @@
   <body onload="check_current_user()">
     <h1 id="user">Welcome:</h1>
 
-    <a href="/login">Login</a>
-    <a href="register">Register</a>
+    <a id="login" href="/login">Login</a>
+    <a id="register" href="register">Register</a>
 
     <h2>Send text to server</h2>
     <input type=" " id="text_box" /> <button id="text_send">Enter</button>
 
-    <h3>Do not click the button</h3>
+    <h3>Do not click the button: </h3>
 
     <button id="bad_button">Seriously DO NOT PRESS</button>
 
     <script src="{{ url_for('static', filename='scripts.js' ) }}"></script>
+
   </body>
 </html>
