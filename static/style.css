@@ -5,9 +5,25 @@ body {
 
 /* Welcome: */
 h1 {
-    position: relative;
     color: white;
     text-shadow: 1px 1px 1px black;
+}
+
+@keyframes user_rainbow_stroke {
+    14% {color: red;}
+    28% {color: orange;}
+    42% {color: yellow;}
+    56% {color: rgb(7, 220, 11);}
+    70% {color: rgb(0, 187, 255);}
+    84% {color: rgb(166, 0, 255);}
+    100% {color: rgb(228, 74, 228);}
+
+}
+
+#user {
+    animation-name: user_rainbow_stroke;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
 }
 
 /* links at the top of the site */
@@ -18,7 +34,15 @@ a {
 
 /* login position */
 #login {
+    position: fixed;
+    top: 35px;
+    right: 70px;
+}
 
+#register {
+    position: fixed;
+    top: 35px;
+    right: 10px;
 }
 
 /* Send text to server */
@@ -40,11 +64,18 @@ h3 {
 }
 
 /* Do not click the button button */
-#bad_button {
-    position: fixed;
-    top: 205px;
-    left: 200px;
-    
+#bad_button { 
     cursor: pointer;
 }
 
+h4 {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+#test_button {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+
+}

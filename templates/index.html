@@ -12,19 +12,30 @@
   </head>
 
   <body onload="check_current_user()">
-    <h1 id="user">Welcome:</h1>
+    <h1>Welcome: <span id="user"></span></h1>
 
     <a id="login" href="/login">Login</a>
     <a id="register" href="register">Register</a>
 
-    <h2>Send text to server</h2>
-    <input type=" " id="text_box" /> <button id="text_send">Enter</button>
+    <h2 id="h2">
+      Send text to server: <input type=" " id="text_box" />
+      <button id="text_send">Enter</button>
+    </h2>
 
-    <h3>Do not click the button: </h3>
+    <h3>
+      Do not click the button:
+      <button id="bad_button">Seriously DO NOT PRESS</button>
+    </h3>
 
-    <button id="bad_button">Seriously DO NOT PRESS</button>
+    <div id="upload_articles"></div>
+
+    <h4 id="h4" hidden>Articles:</h4>
+    <ul id="article_list" hidden></ul>
+
+    <div id="test_div">
+      <button id="test_button">test</button>
+    </div>
 
     <script src="{{ url_for('static', filename='scripts.js' ) }}"></script>
-
   </body>
 </html>

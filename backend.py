@@ -43,7 +43,7 @@ cur.execute(
 )
 cur.execute(
     """CREATE TABLE IF NOT EXISTS articles
-    (id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, username VARCHAR(255) NOT NULL, link VARCHAR(255) NOT NULL)"""
+    (id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, title VARCHAR(255) NOT NULL, username VARCHAR(255) NOT NULL, link VARCHAR(255) NOT NULL)"""
 )
 
 
@@ -140,20 +140,31 @@ def article_upload():
     print(article)
 
     if article:
+        title = article["title"]
         username = article["username"]
         link = article["link"]
 
         cur.execute(
-            "INSERT INTO articles (username, link) VALUES (?, ?)",
-            (username, link),
+            "INSERT INTO articles (title, username, link) VALUES (?, ?, ?)",
+            (title, username, link),
         )
         con.commit()
 
         return {"status": "ok"}, 200
-    
+
     else:
         return ({"status": "error", "message": "username or link invalid"}), 400
 
+
+# this is for sending our article information back to the frontend so that we can display our articles
+# this sends every row of our articles and from it we can extract any info
+@app.route("/article_posting", methods=["POST"])
+def article_posting():
+    cur.execute("SELECT * FROM articles")
+    rows = cur.fetchall()
+
+    print(rows)
+    return rows
 
 
 # This is currently running our backend in debug mode, so that when changes are made they update automatically
