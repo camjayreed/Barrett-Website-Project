@@ -4,16 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css' ) }}"
+    />
   </head>
   <body>
     <h1>Please login here!</h1>
 
-    <label for="login_real">Username</label>
+    <label id="login_real_text" for="login_real">Username</label>
     <input type=" " id="login_real" />
 
     <div></div>
 
-    <label for="pass_real">Password</label>
+    <label id="pass_real_text" for="pass_real">Password</label>
     <input type=" " id="pass_real" />
 
     <button id="login_real_submit">Submit</button>

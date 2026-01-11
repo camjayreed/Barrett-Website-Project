@@ -111,26 +111,33 @@ async function grab_articles() {
 
     const span1 = document.createElement("span"); // Title
     const span2 = document.createElement("span"); // Username
+    const br = document.createElement("br");      // Line Break
     const article_link = document.createElement("a"); // Link
 
     div.id = `article_${id}`;
+    div.classList.add("article_div");
 
     span1.id = `article_${title}`;
-    span1.innerText = title;
+    span1.innerText = title + " :";
+    span1.classList.add("article_title");
 
     span2.id = `user_${username}`;
-    span2.innerText = username;
+    span2.innerText = "Submitted By: " + capitalize(username);
+    span2.classList.add("article_user");
 
     article_link.href = `${link}`;
     article_link.innerHTML = `${link}`;
+    article_link.classList.add("article_link");
 
     // styling
+
 
     // show the elements
     h4.appendChild(div);
 
     div.appendChild(span1);
     div.appendChild(span2);
+    div.appendChild(br);
     div.appendChild(article_link);
   });
 
