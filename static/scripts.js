@@ -42,6 +42,19 @@ async function upload_article() {
   article_link.id = "article_link";
   document.body.appendChild(article_link);
 
+  const article_title_text = document.createElement("span")
+  article_title_text.innerText = "Article Title: "
+  article_title_text.id = "article_title_text"
+  document.body.appendChild(article_title_text);
+
+  const article_link_text = document.createElement("span")
+  article_link_text.innerText = "Article Link: "
+  article_link_text.id = "article_link_text"
+  document.body.appendChild(article_link_text);
+
+  document.getElementById("article_title_text").removeAttribute("hidden")
+  document.getElementById("article_link_text").removeAttribute("hidden")
+
   // making a button to submit and send article data
   const article_submit = document.createElement("button");
   article_submit.innerText = "Submit";
@@ -112,6 +125,7 @@ async function grab_articles() {
     const span1 = document.createElement("span"); // Title
     const span2 = document.createElement("span"); // Username
     const br = document.createElement("br");      // Line Break
+    const del_article = document.createElement("button");  // Delete Button
     const article_link = document.createElement("a"); // Link
 
     div.id = `article_${id}`;
@@ -125,12 +139,13 @@ async function grab_articles() {
     span2.innerText = "Submitted By: " + capitalize(username);
     span2.classList.add("article_user");
 
+    del_article.id = `article_del_${id}`;
+    del_article.innerText = "Delete";
+    del_article.classList.add("del_article");
+
     article_link.href = `${link}`;
     article_link.innerHTML = `${link}`;
     article_link.classList.add("article_link");
-
-    // styling
-
 
     // show the elements
     h4.appendChild(div);
@@ -138,19 +153,12 @@ async function grab_articles() {
     div.appendChild(span1);
     div.appendChild(span2);
     div.appendChild(br);
+    div.appendChild(del_article);
     div.appendChild(article_link);
   });
-
-  // basically create our html objects with our data, and then ++ to our id to do the next data
-  // loop through database 1 at a time, if id of entry is ever == to 0 then we know it ran through them all so we break
-
-  // dynamically apply css to every item, attach the username to the top right, a darkblue background to standout, possibly a border
 }
 
-// store data here, with this we just need to create the actual articles
-//  const articles = document.createElement("article");
-//  articles.innerText = "data["link"]";
-//  articles.innerText = "data["username"];
-//  articles.id = "data["link"]"
-//  document.body.appendChild(articles);
-//}
+document.getElementById(`article_del_${id}`).addEventListener("click", delete_article);
+function delete_article() {
+  console.log('hello')
+}

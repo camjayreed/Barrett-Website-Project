@@ -5,6 +5,9 @@ body {
 
 /* Welcome: */
 h1 {
+    position: relative;
+    top: -15px;
+    font-size: 23px;
     color: white;
     text-shadow: 1px 1px 1px black;
 }
@@ -34,21 +37,24 @@ a {
 
 /* login position */
 #login {
-    position: fixed;
-    top: 35px;
+    position: absolute;
+    top: 5px;
     right: 70px;
 }
 
 #register {
-    position: fixed;
-    top: 35px;
+    position: absolute;
+    top: 5px;
     right: 10px;
 }
 
 /* Send text to server */
 h2 {
+    position: relative;
+    top: 20px;
     color: white;
     text-shadow: 1px 1px 1px black;
+    font-size: 24.5px;
 
 }
 
@@ -59,6 +65,9 @@ h2 {
 
 /* Do not click the button */
 h3 {
+    font-size: 20px;
+    position: relative;
+    top: 30px;
     color: white;
     text-shadow: 1px 1px 1px black;
 }
@@ -69,12 +78,15 @@ h3 {
 }
 
 h4 {
+    position: relative;
+    top: 35px;
     font-size: 25px;
     color: white;
     text-shadow: 1px 1px 1px black;
 }
 
 #test_button {
+    cursor: pointer;
     position: fixed;
     bottom: 10px;
     right: 10px;
@@ -94,7 +106,7 @@ h4 {
 }
 
 .article_user {
-    position: fixed;
+    position: absolute;
     right: 12px;
 }
 
@@ -103,6 +115,10 @@ h4 {
     bottom: 1px;
     left: 4px;
     font-size: 22px;
+}
+
+.del_article {
+
 }
 
 #login_real_text {
@@ -121,6 +137,62 @@ h4 {
 }
 
 #register_pass_text {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+#navbar {
+    background: #00000075;
+    width: 999999px;
+    height: 30px;
+    border: #407ab8;
+    border-style: solid;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+}
+
+#article_button {
+    z-index: 1;
+    cursor: pointer;
+    position: absolute;
+    left: 101px;
+    top: 207px;
+}
+
+#article_title {
+    position: absolute;
+    top: 207px;
+    left: 200px;
+}
+
+#article_link {
+    position: absolute;
+    top: 207px;
+    left: 375px;
+}
+
+#article_submit {
+    cursor: pointer;
+    position: absolute;
+    top: 207px;
+    left: 550px;
+}
+
+#article_title_text {
+    position: absolute;
+    top: 187px;
+    left: 240px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+#article_link_text {
+    position: absolute;
+    top: 187px;
+    left: 410px;
+    font-weight: bold;
     color: white;
     text-shadow: 1px 1px 1px black;
 }
