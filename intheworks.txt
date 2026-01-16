@@ -1,15 +1,8 @@
 Current:
-- style within our scripts.js file so thats our created articles look nice
-- if logged in user == user who created the article then the user may delete their own article
-
-
+- add 2 little things of my own (no barrett direction)
 
 
 Future:
-- make sure users cannot bypass the frontend to delete articles.
-- allow users to logout
-- add 2 little things of my own (no barrett direction)
-- make the site look fancy
 - touch up the readme in github and make it look better, add sections like "how to setup", and "how to use".
 - "sell" the project and answer barretts questions
 
@@ -36,6 +29,10 @@ Completed:
 - losing my mind refactoring my database and site because somehow i forgot to account for titles - 1.10.26 @ 5:21am
 - fully implemented articles into the database and made them all display on the homepage - 1.10.26 @ 6:37am
 - finish stylizing the rest of the pages 1.11.26 @ 7:29am
+- style within our scripts.js file so thats our created articles look nice 1.12.26 @ 5:47am
+- if logged in user == user who created the article then the user may delete their own article 1.13.26 @ 7:39am
+- allow users to logout 1.16.26 @ 1:52am
+- fully implemented jwt tokens on login, so users cannot bypass checks to create and delete articles 1.16.26 @ 6:44am
 
 
 

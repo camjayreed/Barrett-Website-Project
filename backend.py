@@ -1,29 +1,30 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from flask_cors import CORS
-from flask import request, jsonify
-import sqlite3
-import json
-import os
-import bcrypt
+import sqlite3, json, os, bcrypt, secrets
+from dotenv import load_dotenv
+from flask_jwt_extended import (
+    JWTManager,
+    create_access_token,
+    jwt_required,
+    get_jwt_identity,
+    get_jwt,
+)
+
 
 app = Flask(__name__)
 CORS(app)
 
+# global var for keeping track of whos logged in
+current_user = []
 
-@app.route("/")
-def hello_world():
-    return render_template("index.html")
+# JWT Setup
+app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
+app.config["JWT_TOKEN_LOCATION"] = ["headers"]
+jwt = JWTManager(app)
 
-
-@app.route("/register", methods=["GET"])
-@app.route("/login", methods=["GET"])
-def render_template_page():
-    file_name = request.path.replace("/", "")
-    template = f"{file_name}.html"
-
-    return render_template(template)
-
-
+# SQLite Setup
+############################
 # this section is gpt code, becuase i couldnt find out how to run the db file in my project folder
 # # before this it wanted to make one outside of it everytime i ran my backend
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -47,6 +48,21 @@ cur.execute(
 )
 
 
+# Main Code Section
+@app.route("/")
+def hello_world():
+    return render_template("index.html")
+
+
+@app.route("/register", methods=["GET"])
+@app.route("/login", methods=["GET"])
+def render_template_page():
+    file_name = request.path.replace("/", "")
+    template = f"{file_name}.html"
+
+    return render_template(template)
+
+
 # When homepage button is pressed this will just return some text to our terminal
 @app.get("/button_pressed")
 def button_pressed():
@@ -61,11 +77,6 @@ def send_text():
     decoded_string = byte_string.decode()
     print(f"User Entered: {decoded_string}")
     return "status: ok"
-
-
-# storing registered users here
-users = []
-current_user = []
 
 
 # this is where our user can create and account and have it added to the serverside for login
@@ -105,7 +116,7 @@ def register():
 def real_login():
     login_real = request.get_json()
     global current_user
-    cur.execute(f"SELECT * FROM users WHERE username = '{login_real['username']}'")
+    cur.execute("SELECT * FROM users WHERE username = ?", (login_real["username"],))
     rows = cur.fetchall()
     user_fixed = tuple(login_real.values())
 
@@ -115,12 +126,30 @@ def real_login():
         ):
             current_user = x[1]
             print("user logged in")
-            return {"status": "ok"}, 200
+            access_token = create_access_token(identity=str(rows[0][0]))
+            return (
+                jsonify(
+                    {
+                        "status": "ok",
+                        "message": "Login Success",
+                        "access_token": access_token,
+                    }
+                ),
+                200,
+            )
     else:
         return (
             jsonify({"status": "error", "message": "Invalid username or password"}),
             401,
         )
+
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    global current_user
+    current_user = ""
+
+    return {"status": "ok"}, 200
 
 
 # my interesting implementation of displaying the current logged in user on the homepage
@@ -159,12 +188,27 @@ def article_upload():
 # this is for sending our article information back to the frontend so that we can display our articles
 # this sends every row of our articles and from it we can extract any info
 @app.route("/article_posting", methods=["POST"])
+@jwt_required()
 def article_posting():
     cur.execute("SELECT * FROM articles")
     rows = cur.fetchall()
 
     print(rows)
     return rows
+
+
+@app.route("/article_delete", methods=["POST"])
+@jwt_required()
+def article_deletion():
+    article_id = request.get_json()
+    print(article_id)
+
+    cur.execute(f"DELETE FROM articles WHERE id = {article_id}")
+    con.commit()
+
+    print(f"article has been deleted")
+
+    return {"status": "ok"}, 200
 
 
 # This is currently running our backend in debug mode, so that when changes are made they update automatically

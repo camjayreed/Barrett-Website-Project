@@ -14,6 +14,10 @@ async function check_current_user() {
   console.log(data);
 
   document.getElementById("user").innerText = `${capitalize(data)}`;
+  document.getElementById("login").innerText = "Logout";
+  document.getElementById("login").id = "logout";
+  document.getElementById("logout").href = "/";
+  document.getElementById("logout").addEventListener("click", logout);
 
   const article_button_create = document.createElement("button");
   article_button_create.innerText = "Upload Article";
@@ -29,8 +33,17 @@ async function check_current_user() {
   document.getElementById("article_list").removeAttribute("hidden");
 }
 
+function logout() {
+  console.log("Logged Out");
+  const response = fetch("http://127.0.0.1:5000/logout", {
+    method: "POST",
+  });
+}
+
 // Uploading Articles
 async function upload_article() {
+  const token = localStorage.getItem("access_token");
+
   // making an input field to enter article links
   const article_title = document.createElement("input");
   article_title.innerText = "Article Title";
@@ -42,18 +55,18 @@ async function upload_article() {
   article_link.id = "article_link";
   document.body.appendChild(article_link);
 
-  const article_title_text = document.createElement("span")
-  article_title_text.innerText = "Article Title: "
-  article_title_text.id = "article_title_text"
+  const article_title_text = document.createElement("span");
+  article_title_text.innerText = "Article Title: ";
+  article_title_text.id = "article_title_text";
   document.body.appendChild(article_title_text);
 
-  const article_link_text = document.createElement("span")
-  article_link_text.innerText = "Article Link: "
-  article_link_text.id = "article_link_text"
+  const article_link_text = document.createElement("span");
+  article_link_text.innerText = "Article Link: ";
+  article_link_text.id = "article_link_text";
   document.body.appendChild(article_link_text);
 
-  document.getElementById("article_title_text").removeAttribute("hidden")
-  document.getElementById("article_link_text").removeAttribute("hidden")
+  document.getElementById("article_title_text").removeAttribute("hidden");
+  document.getElementById("article_link_text").removeAttribute("hidden");
 
   // making a button to submit and send article data
   const article_submit = document.createElement("button");
@@ -82,9 +95,16 @@ async function upload_article() {
         link: link,
       };
 
+      const token = localStorage.getItem("access_token");
+      console.log("UPLOAD token:", token);
+      console.log("UPLOAD url:", "http://127.0.0.1:5000/article_upload");
+
       fetch("http://127.0.0.1:5000/article_upload", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(article),
       });
     });
@@ -110,9 +130,13 @@ function apisendtext() {
 // grabs the articles from our database and displays them
 document.getElementById("test_button").addEventListener("click", grab_articles);
 async function grab_articles() {
+  const token = localStorage.getItem("access_token");
   const response = await fetch("http://127.0.0.1:5000/article_posting", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   const data = await response.json(); // this gives us the data for our entire database
@@ -124,8 +148,8 @@ async function grab_articles() {
 
     const span1 = document.createElement("span"); // Title
     const span2 = document.createElement("span"); // Username
-    const br = document.createElement("br");      // Line Break
-    const del_article = document.createElement("button");  // Delete Button
+    const br = document.createElement("br"); // Line Break
+    const del_article = document.createElement("button"); // Delete Button
     const article_link = document.createElement("a"); // Link
 
     div.id = `article_${id}`;
@@ -139,9 +163,16 @@ async function grab_articles() {
     span2.innerText = "Submitted By: " + capitalize(username);
     span2.classList.add("article_user");
 
-    del_article.id = `article_del_${id}`;
+    del_article.id = `article_del`;
     del_article.innerText = "Delete";
     del_article.classList.add("del_article");
+    del_article.setAttribute("data-article-id", id);
+    const del_button = del_article;
+
+    // add data to our button, it holds the id of the article
+
+    // now we can add a listener for buttons, if a button with the id article_del is pressed
+    // then we pull the data from that button and then send it to the backend for deletion, also need to find a way to remove it from frontend
 
     article_link.href = `${link}`;
     article_link.innerHTML = `${link}`;
@@ -155,10 +186,34 @@ async function grab_articles() {
     div.appendChild(br);
     div.appendChild(del_article);
     div.appendChild(article_link);
+
+    del_button.addEventListener("click", delete_article);
+
+    return del_button;
   });
 }
 
-document.getElementById(`article_del_${id}`).addEventListener("click", delete_article);
-function delete_article() {
-  console.log('hello')
+function delete_article(event) {
+  const token = localStorage.getItem("access_token");
+  const button = event.currentTarget; // gpt honestly had to help me get here
+  const articleId = button.dataset.articleId; // i tried a bunch but i could never seem to get anything to return for my id
+
+  console.log("delete article:", articleId);
+
+  fetch("http://127.0.0.1:5000/article_delete", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(articleId),
+  });
+
+  // Source - https://stackoverflow.com/a
+  // Posted by Andy E, modified by community. See post 'Timeline' for change history
+  // Retrieved 2026-01-13, License - CC BY-SA 4.0
+  document.querySelectorAll(`#article_${articleId}`).forEach(function (node) {
+    node.remove();
+    console.log("deleted");
+  });
 }

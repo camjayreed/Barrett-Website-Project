@@ -19,6 +19,13 @@ async function api_login_real() {
   });
 
   const data = await response.json();
+  const token = data.access_token;
+  localStorage.setItem("access_token", token);
+
+  console.log("login response json:", data);
+  console.log("token from login:", data.access_token);
+  localStorage.setItem("access_token", data.access_token);
+  console.log("token stored now:", localStorage.getItem("access_token"));
 
   if (data.status === "ok") {
     // let them in
