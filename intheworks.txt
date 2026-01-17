@@ -1,23 +1,38 @@
 Current:
 - add 2 little things of my own (no barrett direction)
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Future:
 - touch up the readme in github and make it look better, add sections like "how to setup", and "how to use".
 - "sell" the project and answer barretts questions
 
-
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Ideas:
-- Make it so the do not click button redirects you to a blue screen with a loading bar to "delete system 32"
-- Display a real time terminal on the right side of the homepage
-- make the site live, and able to be accessed by multiple people at once, so say me and barrett can both be logged in and posting
-- make it so users can comment and delete comments under forum posts
-- make a tile frenzy like minigame with fading animation for black boxes, keeps score maybe
+- Make it so the do not click button redirects you to a blue screen with a loading bar to "delete system 32" (Small Idea)
+- Display a real time terminal on the right side of the homepage (Big Idea)
+- make a tile frenzy like minigame with fading animation for black boxes, keeps score maybe (Big Idea)
 
+Do No Click Button Idea Breakdown (Small Idea)
+    1. if you click the button, a dark souls like animation will play with the background fading to black and dark souls red text appearing telling you
+        that you have died, there will then be a reset button that just redirects to index
+    2. if you click the button, the website will fake a bluescreen, maybe with a glitch animation or something, and then either
+        automatically creash back into a reset (goto index) or keep glitching, freeze, show a loading bar to fix, then go back to index
 
+Tile Frenzy Idea Breakdown (Big Idea)
+    so im thinking a big box (border box) that contains many small boxes within (9x9), the small boxes would by default be white, but on game start 
+    lets say 4 turn black, now when we click a black box it turns white and then we randomly select another box to turn black (it can be the same box).
 
+    clicking a black box will get you 1 point, if you click 3 white boxes you lose and score will not submit
+    there will be a timer for 45s and a high score tracker for keeping track of progress / giving incentive to play
+
+    to keep track of high scores we could start a timer on a "start" button, then when time runs out just set the score as the high score if
+    the number is higher than the previous once
+    we could easily transfer this into a leaderboard system by sending the high score along with a username to our backend, and at the end of the game
+    we could display a leaderboard with user names and scores sorted from highest to lowest
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Completed:
 - Made it so that when a user registers in were only checking against specific usernames in our table instead of all of the data
@@ -34,8 +49,7 @@ Completed:
 - allow users to logout 1.16.26 @ 1:52am
 - fully implemented jwt tokens on login, so users cannot bypass checks to create and delete articles 1.16.26 @ 6:44am
 
-
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Barretts Questions Section:
     Questions (Answer each in at least 3-5 sentences, at IT job I have been told multiple times about people 
