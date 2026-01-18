@@ -32,6 +32,8 @@ Tile Frenzy Idea Breakdown (Big Idea)
     we could easily transfer this into a leaderboard system by sending the high score along with a username to our backend, and at the end of the game
     we could display a leaderboard with user names and scores sorted from highest to lowest
 
+    leaderboard should have usersname,score,attempts total
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Completed:
