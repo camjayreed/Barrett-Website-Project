@@ -56,6 +56,7 @@ def hello_world():
 
 @app.route("/register", methods=["GET"])
 @app.route("/login", methods=["GET"])
+@app.route("/tilefrenzy", methods=["GET"])
 def render_template_page():
     file_name = request.path.replace("/", "")
     template = f"{file_name}.html"

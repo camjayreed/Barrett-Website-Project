@@ -203,3 +203,63 @@ h4 {
     color: white;
     text-shadow: 1px 1px 1px black;
 }
+
+/* Tile Frenzy */
+.sidebar {
+  width: 400px;
+  aspect-ratio: 1 / 1.5;
+  border: 3px solid white;
+
+  position: absolute;
+  left: 0px;
+  top: 50px;
+}
+
+.board {
+  /* gpt help here to get the smaller boxes within the board */
+  width: min(600px, 100%);
+  aspect-ratio: 1 / 1;
+  border: 3px solid black;
+  padding: 0px;
+
+  position: absolute;
+  left: 410px;
+  top: 50px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0px;
+}
+
+#leaderboard {
+    position: absolute;
+    top: 0px;
+}
+
+#title_frenzy {
+    position: absolute;
+    top: 5px;
+    left: 45%;
+}
+
+.tiles {
+  border: 3px solid rgb(0, 0, 0);
+  box-sizing: border-box;
+
+  background-color: white;
+}
+
+#start_game {
+    position: absolute;
+    left: 250px;
+}
+
+#score_text {
+    font-size: 20px;
+    position: relative;
+    top: 0x;
+    left: 410px;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
