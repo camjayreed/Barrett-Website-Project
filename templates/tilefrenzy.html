@@ -13,20 +13,25 @@
 
   <body onload="make_tiles()">
     <h1 id="title_frenzy">Tile Frenzy</h1>
-    <p id="score_text">Score: </p>
+    <p id="score_text">Score: 0</p>
+    <p id="timer_text">Timer: 45</p>
+    <p id="misses_text">Misses: 0/3</p>
 
     <h2 id="leaderboard">Leaderboard</h2>
     <div id="sidebar" class="sidebar">
+      <p>
+        You know what... i actually dont feel like implmenting yet another
+        database table and passing the data back and forth SO YOU KNOW WHAT YOUR
+        NOT GETTING A FUNCTIONAL LEADERBOARD!!! better yet YOUR NOT EVEN GETTING
+        STYLED TEXT. hmph >.<
+      </p>
     </div>
 
-
-    <div id="board" class="board">
-    </div>
+    <div id="board" class="board"></div>
 
     <button id="start_game">Start</button>
 
-    <a href="/">Go Home</a>
-
+    <a id="tile_home" href="/">Go Home</a>
 
     <script src="{{ url_for('static', filename='tilefrenzy.js' ) }}"></script>
   </body>

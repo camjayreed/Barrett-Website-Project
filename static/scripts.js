@@ -110,11 +110,44 @@ async function upload_article() {
     });
 }
 
+let intervalId;
+let time = 0;
+// ripping our timer from tilefrenzy for reuse
+function timer() {
+  time -= 1;
+  console.log(time)
+
+  if (time == 0) {
+    clearInterval(intervalId);
+    intervalId = null;
+    window.location.href = "/"
+  }
+}
+
 // Homepage api button
 document.getElementById("bad_button").addEventListener("click", apibuttonpress);
 function apibuttonpress() {
   document.getElementById("bad_button").innerText =
     "you will pay for what youve done";
+
+  // yes im aware this looks incredible lmao i will not be fixing it because i dont believe that i can make the gif background transparent and i just dont care
+  const fake_bsod = document.createElement("img");
+  fake_bsod.setAttribute("src", "/static/media/fake_bluescreen.png");
+  fake_bsod.setAttribute("alt", "fake_bsod");
+  fake_bsod.setAttribute("id", "fake_bsod_img");
+  document.body.appendChild(fake_bsod);
+
+  const fake_load = document.createElement("img");
+
+  fake_load.setAttribute("src", "/static/media/fake_loading.gif"); // i have no idea what the gif flashes for text at the end, work laptops input lag timing is wild and im not waiting 10s per try
+  fake_load.setAttribute("alt", "fake_load");
+  fake_load.setAttribute("id", "fake_load_gif");
+  document.body.appendChild(fake_load);
+
+  // below this comment we need a timer so that when our gif is finished loading we go back to index
+  time = 10
+  intervalId ??= setInterval(timer, 1000);
+
   fetch("http://127.0.0.1:5000/button_pressed");
 }
 

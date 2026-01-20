@@ -1,11 +1,9 @@
 Current:
-- add 2 little things of my own (no barrett direction)
-
+- touch up the readme in github and make it look better, add sections like "how to setup", and "how to use".
+- "sell" the project and answer barretts questions
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Future:
-- touch up the readme in github and make it look better, add sections like "how to setup", and "how to use".
-- "sell" the project and answer barretts questions
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -14,13 +12,13 @@ Ideas:
 - Display a real time terminal on the right side of the homepage (Big Idea)
 - make a tile frenzy like minigame with fading animation for black boxes, keeps score maybe (Big Idea)
 
-Do No Click Button Idea Breakdown (Small Idea)
+Do No Click Button Idea Breakdown (Small Idea) ## COMPLETED ##
     1. if you click the button, a dark souls like animation will play with the background fading to black and dark souls red text appearing telling you
         that you have died, there will then be a reset button that just redirects to index
     2. if you click the button, the website will fake a bluescreen, maybe with a glitch animation or something, and then either
         automatically creash back into a reset (goto index) or keep glitching, freeze, show a loading bar to fix, then go back to index
 
-Tile Frenzy Idea Breakdown (Big Idea)
+Tile Frenzy Idea Breakdown (Big Idea) ## COMPLETED ##
     so im thinking a big box (border box) that contains many small boxes within (9x9), the small boxes would by default be white, but on game start 
     lets say 4 turn black, now when we click a black box it turns white and then we randomly select another box to turn black (it can be the same box).
 
@@ -50,6 +48,8 @@ Completed:
 - if logged in user == user who created the article then the user may delete their own article 1.13.26 @ 7:39am
 - allow users to logout 1.16.26 @ 1:52am
 - fully implemented jwt tokens on login, so users cannot bypass checks to create and delete articles 1.16.26 @ 6:44am
+- so i never really made the updates to this but i fully implemented the tilefrenzy idea so yea gg 1.20.26 @ 6:47am
+- implemented my smaller idea of a blue screen kinda thing when you press the do not click button 1.20.26 @ 7:48am
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
