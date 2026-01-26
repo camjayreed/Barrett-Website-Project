@@ -164,31 +164,31 @@ h4 {
     cursor: pointer;
     position: absolute;
     left: 101px;
-    top: 207px;
+    top: 242px;
 }
 
 #article_title {
     position: absolute;
-    top: 207px;
+    top: 242px;
     left: 200px;
 }
 
 #article_link {
     position: absolute;
-    top: 207px;
+    top: 242px;
     left: 375px;
 }
 
 #article_submit {
     cursor: pointer;
     position: absolute;
-    top: 207px;
+    top: 242px;
     left: 550px;
 }
 
 #article_title_text {
     position: absolute;
-    top: 187px;
+    top: 222px;
     left: 240px;
     font-weight: bold;
     color: white;
@@ -197,7 +197,7 @@ h4 {
 
 #article_link_text {
     position: absolute;
-    top: 187px;
+    top: 222px;
     left: 410px;
     font-weight: bold;
     color: white;
