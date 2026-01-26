@@ -1,12 +1,3 @@
-Current:
-- touch up the readme in github and make it look better, add sections like "how to setup", and "how to use".
-- "sell" the project and answer barretts questions
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Future:
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 Ideas:
 - Make it so the do not click button redirects you to a blue screen with a loading bar to "delete system 32" (Small Idea)
 - Display a real time terminal on the right side of the homepage (Big Idea)
@@ -50,6 +41,8 @@ Completed:
 - fully implemented jwt tokens on login, so users cannot bypass checks to create and delete articles 1.16.26 @ 6:44am
 - so i never really made the updates to this but i fully implemented the tilefrenzy idea so yea gg 1.20.26 @ 6:47am
 - implemented my smaller idea of a blue screen kinda thing when you press the do not click button 1.20.26 @ 7:48am
+- "sell" the project and answer barretts questions 1.26.26 @ 3:14am
+- touch up the readme in github and make it look better, add sections like "how to setup", and "how to use". 1.26.26 @ 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

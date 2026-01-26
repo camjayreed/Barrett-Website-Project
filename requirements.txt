@@ -2,3 +2,6 @@ Flask
 flask-cors
 bcrypt
 gunicorn
+flask-jwt-extended
+
+# gunicorn was only needed for me hosting the website, it is not needed to run the site locally
