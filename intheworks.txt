@@ -7,7 +7,7 @@ Do No Click Button Idea Breakdown (Small Idea) ## COMPLETED ##
     1. if you click the button, a dark souls like animation will play with the background fading to black and dark souls red text appearing telling you
         that you have died, there will then be a reset button that just redirects to index
     2. if you click the button, the website will fake a bluescreen, maybe with a glitch animation or something, and then either
-        automatically creash back into a reset (goto index) or keep glitching, freeze, show a loading bar to fix, then go back to index
+        automatically crash back into a reset (goto index) or keep glitching, freeze, show a loading bar to fix, then go back to index
 
 Tile Frenzy Idea Breakdown (Big Idea) ## COMPLETED ##
     so im thinking a big box (border box) that contains many small boxes within (9x9), the small boxes would by default be white, but on game start 
@@ -28,7 +28,7 @@ Tile Frenzy Idea Breakdown (Big Idea) ## COMPLETED ##
 Completed:
 - Made it so that when a user registers in were only checking against specific usernames in our table instead of all of the data
 - Write login logic that works with database
-- Implement password hasing and salting when registering an account
+- Implement password hashing and salting when registering an account
 - Make it so when the user logs in we check the entered password vs the hashed db password
 - If a user is logged in, show a create article button - 1.3.26 @ 2:47am
 - Ability to create an article, and save it to a database - 1.4.26 @ 3:57am
@@ -42,7 +42,7 @@ Completed:
 - so i never really made the updates to this but i fully implemented the tilefrenzy idea so yea gg 1.20.26 @ 6:47am
 - implemented my smaller idea of a blue screen kinda thing when you press the do not click button 1.20.26 @ 7:48am
 - "sell" the project and answer barretts questions 1.26.26 @ 3:14am
-- touch up the readme in github and make it look better, add sections like "how to setup", and "how to use". 1.26.26 @ 6:59am
+- touch up the readme in github and make it look better, add sections like "how to setup", and "how to use". 1.26.26 @ 6:57am
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -52,12 +52,12 @@ Barretts Questions Section:
         Also if you can make this sound natural not like a clanker):
 
             1. What is this project (High level explanation not jumping into technical details)? - Done
-                So this project was an excersice in building real world applicable programs, the main goal was to mimic features found in most common user based sites.
+                So this project was an exercise in building real world applicable programs, the main goal was to mimic features found in most common user based sites.
                 the website has the ability to store users in a database upon creating an account. users will also have the ability to post, view, and delete articles.
                 
             2. What did you use to make this / technical details of it? - Done
                 So this project is comprised of 5 main things, we have the big 4 being html, js, css, and python, and for the backend i opted to use sqlite. 
-                My reasoning for using python as the backend mostly comes down to personal preference and comortability, there werent really any techincal limitations I was worried about so i figured it was a solid choice.
+                My reasoning for using python as the backend mostly comes down to personal preference and comfortability, there werent really any technical limitations I was worried about so i figured it was a solid choice.
                 And as for sqlite the reason i chose it is because its very simple and lightweight which is all i knew i needed for this project.
 
             3. Give me a "This is how everything works" type of talk, for this I mean more like - Done
@@ -67,8 +67,8 @@ Barretts Questions Section:
 
                 Register / Login:
                     Register:
-                        so for registerering a user we click the register button, we enter a username and password, and that username and password is sent to the backend via a post api request.
-                        when the backend recieved the request the password will be hashed and salted using bcrypt and the username and hashed+salted password will then be stored into the database.
+                        so for registering a user we click the register button, we enter a username and password, and that username and password is sent to the backend via a post api request.
+                        when the backend receives the request the password will be hashed and salted using bcrypt and the username and hashed+salted password will then be stored into the database.
 
                     Login:
                         so for login its a similar process to registering, we start with clicking the login button, and entering our username and password, then we do a fetch request to the backend
@@ -81,18 +81,18 @@ Barretts Questions Section:
                     upon entering the info and pressing submit an api post request will be sent to the backend containing the tile, article, and current logged in user who sent it.
                     from this point we enter those 3 bits of info into the database, and send back an "status: ok" to the frontend.
                     when you press the test button all articles stored in the database will be created via a javascript function that basically takes every row in our database for articles,
-                    and assigns each article_id, username, article title, and article link. each will be there own html element, all these peices are then put into a div element and crammed inside a bigger div with the id of "articles" and styled with css to flow nicely.
+                    and assigns each article_id, username, article title, and article link. each will be there own html element, all these pieces are then put into a div element and crammed inside a bigger div with the id of "articles" and styled with css to flow nicely.
 
                     if you press delete on an article, then a post api request is sent to the backend and we check the username of the current logged in user vs the username of the poster of the article,
                     if both match then the article will be deleted from both the frontend and the database.
 
                 Tile Frenzy:  (brick of info, sorry barrett)
                     how the game works:
-                        basically theres a 9x9 grid of white tiles, but 3 are recolered black and your goal is to click as many black tiles before the timer runs out.
+                        basically theres a 9x9 grid of white tiles, but 3 are colored black and your goal is to click as many black tiles before the timer runs out.
                         but if you click too many white tiles (3) then your game ends and your score will be 0.
 
                     board setup:
-                        ok so tile frenzy is definitly the most complex one, basically on loading the page we create a big div and style it to be a box, now we run a for loop and make it run 16 times,
+                        ok so tile frenzy is definitely the most complex one, basically on loading the page we create a big div and style it to be a box, now we run a for loop and make it run 16 times,
                         every time it loops it creates a div containing its small box, these boxes are then places inside of the bigger box (div) by using css's grid layout module.
                         now after we make the big and small inner boxes, we need to have 3 boxes randomly selected to be black. i did this by assigning each grid an id# on creation.
                         then after making all the smaller boxes, i run a for loop that runs 3 times, this for loop then runs a piece of code that uses math.random to randomly select from a list of ids ranging from [0,15]
@@ -108,7 +108,7 @@ Barretts Questions Section:
                         so a couple things play into the game but ill touch on them as we go. so after the setup is complete you will see a "start game" button, upon pressing it our timer would start
                         and most importantly we would add an eventlistener to all of the smaller boxes, the way i did this was at creation of the smaller boxes i assigned them all a class of "tiles"
                         so we add an eventlistener for clicks to tiles. now when an event happens javascript basically keep it floating around and able to be called at anytime with the right approach
-                        so in another fucntion what i did was capture that floating event and say hey, this is the tile that was just clicked, if its a black tile then increase score and display that score
+                        so in another function what i did was capture that floating event and say hey, this is the tile that was just clicked, if its a black tile then increase score and display that score
                         within an html element above. now when a black tile is clicked we need to create a new one, so what i did is upon clicking one, the tile you clicked will be set white.
                         you will draw a new id using the earlier function we created to make the initial black tiles. this new id will be drawn, colored black, and the id that you just drew will be
                         removed from the pool of ids, when that pool of ids is empty we will reset the pool back to its original state of [0-15]. when the timer runs out and you have not hit the miss count
@@ -118,7 +118,7 @@ Barretts Questions Section:
             
             4. Why did you make this (Think of this as talking to interviewer you aren't going to say - Done
                 "Barrett told me to make this" think WHY a project more)?
-                    My personal goal with this project was to build competency in self reasearching and learning of how to interconnect systems.
+                    My personal goal with this project was to build competency in self researching and learning of how to interconnect systems.
                     Before this project i found myself often staring at documentation and a blank VScode page trying to put code together but not being able to do so.
                     After this project i believe i can confidently build pretty much any feature i put my mind to, by simply researching, putting in the effort, and breaking things down.
                     for a more project specific answer, i think this project allowed me to learn how front and backend actually work together, how apis and databases can help transfer critical information,
@@ -129,9 +129,9 @@ Barretts Questions Section:
             5. Going into this project there were a lot of things you learned of everything you dealt with - Done
                 (frontend, api, general backend, database, uploading/middleware) what interests you the most going forward?
                     I think generally going forwards im really excited to explore more backend and database concepts. 
-                    I found it very rewarding to create these complex systems that bounce back and forth off of eachother to make something "magical" happen for the user.
-                    I really liked working with the depth the backend had to offer, it really forces you to think deeply of how the systems your working with inetertwines, and i find i really enjoy that complexity.
-                    As for database stuff i feel what i worked with here was pretty surface level but i enjoyed what i did touch on and i can definitly see it being very enjoyable to parse massive databases of information.
+                    I found it very rewarding to create these complex systems that bounce back and forth off of each other to make something "magical" happen for the user.
+                    I really liked working with the depth the backend had to offer, it really forces you to think deeply of how the systems your working with intertwines, and i find i really enjoy that complexity.
+                    As for database stuff i feel what i worked with here was pretty surface level but i enjoyed what i did touch on and i can definitely see it being very enjoyable to parse massive databases of information.
 
 
 Retrospective Questions (More informal, just like a vibe check overall, no sentence requirement like the others but more a 
@@ -141,26 +141,26 @@ Retrospective Questions (More informal, just like a vibe check overall, no sente
                 i feel like i covered a lot of this above so i wont be responding :blehh:
 
             2. What did you enjoy from going through it?
-                I actually really enjoyed the backend side of things, just seeing eveything come together was really exciting and i loved debugging issues with passing info back and forth.
+                I actually really enjoyed the backend side of things, just seeing everything come together was really exciting and i loved debugging issues with passing info back and forth.
 
             3. What did you hate going through it (if you didn't hate anything is there anything that annoyed you / you didn't want to do)?
-                I hate html, I HATE CSS, mostly html was just a pain for how you have to structure and group things, this is definitly a skill issue and something i need to impove on.
+                I hate html, I HATE CSS, mostly html was just a pain for how you have to structure and group things, this is definitely a skill issue and something i need to improve on.
                 same for css, i hated position and how it just never seemed to work correctly, i hated styling every individual object (i know i can style like an entire group of things).
                 but yea i really didint hate much, mostly frontend stuff
 
             4. What was the most challenging thing you had to do with this (Doesn't have to be something you hated more something that was hard)?
                 I would say the biggest walls i ran into were with the integration of new things, like i could watch a video over apis and generally understand how they worked. but it didint seem like
-                i could ever find any beginner resources for like here is how you write a post api request, hered how you fetch a fequest in flask etc... apis were difficult to setup and so was my sqlite
+                i could ever find any beginner resources for like here is how you write a post api request, here's how you fetch a request in flask etc... apis were difficult to setup and so was my sqlite
                 which is apparently really easy but i had no idea what was happening and it felt i more lucked myself into it working through a ton of trial and error.
 
             5. What do you feel confident in doing going forward and what do you feel the worst about?
                 I feel a lot more confident in my ability to think a bit further ahead in terms of building a project, i also definitly advanced in my debugging skills, i noticed by the end of the project
                 i was pretty good at slapping around log or print statements to see the internal flow of things. 
 
-                as for things to improve on, id definitly say i could be better at implementing new things. i think before implementing i could do a bit more researching and try to understand the flow a bit more.
+                as for things to improve on, id definitely say i could be better at implementing new things. i think before implementing i could do a bit more researching and try to understand the flow a bit more.
                 but ill also say its quite hard to do so, like when i implemented jwt tokens i had no idea that i needed to pass back a token to my backend when making a post request that required jwt access.
 
-                i also think i could completely lose chatgpt, id say 90% of the code in this project is mine, but chatgpt definitly pulled up and helped a lot when i didint fully understand concepts or i needed help again implementing a new feature
+                i also think i could completely lose chatgpt, id say 90% of the code in this project is mine, but chatgpt definitely pulled up and helped a lot when i didint fully understand concepts or i needed help again implementing a new feature
                 there were a few times i also relied on it for debugging help when i got super stuck for multiple hours on end but yea. id like to be able to fully code without ai
 
             6. How did you enjoy it / overall questions moving forward
