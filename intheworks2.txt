@@ -1,0 +1,22 @@
+Hello and welcome back to the barrett website project, this time around im learning go and came back to this project so that
+i could build something familiar without needing to worry about logic. this gives me a great opportunity to focus on the syntax
+and intracacies of golang.
+
+So far i just plan on replacing the python backend and uhh yea thats it.
+
+i have not been pushing to github cause ive been a lazy bones, and ive been doing coursework
+i dont know if anyone reads these yap seshes i do but if you are then uhh hey coolguy
+
+ill push more i promise, for all my fans (drek and barrett(mostly barrett))
+shoutout those guys, without them i would not be coding like i am now
+
+little rant uhh
+learning golang has been fun but man i need to get better at dealing with walls, its so demotivating to try and learn something 
+completely new and to like not even know how or where to start.
+anyways, ive committed myself to this journery so here i am to stay.
+
+also i think its really cool that drek and barrett have commited to my project, 
+feels cool to see them next to me as if were even close to equals
+
+if your wondering why all my lines are so short, its cause im on a laptop and they go off screen
+why am i rambling you may ask? cause its 7:32 am on 3/20/26 and im sleep deprived asf at work ok goodbye.
