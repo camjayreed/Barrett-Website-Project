@@ -1,4 +1,4 @@
-package backend
+package main
 
 import (
 	"database/sql"
@@ -9,7 +9,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func backend() {
+func main() {
 	current_user := [...]string{}
 	fmt.Print(current_user)
 
@@ -51,5 +51,38 @@ func backend() {
 
 	// Main Code Section
 
+	// Handlers
+	// homepage handler
+	home := func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "templates/index.html")
+	}
+
+	register := func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "templates/register.html")
+	}
+
+	login := func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "templates/login.html")
+	}
+
+	tilefrenzy := func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "templates/tilefrenzy.html")
+	}
+
+	// Routes
+	// route to homepage
+	http.HandleFunc("/", home)
+	// register route
+	http.HandleFunc("/register", register)
+	// login route
+	http.HandleFunc("/login", login)
+	// tilefrenzy route
+	http.HandleFunc("/tilefrenzy", tilefrenzy)
+
+	// render templates??
+
 	// API Endpoints
+
+	// Listening port for server, code after this WILL NOT RUN
+	http.ListenAndServe(":8080", nil)
 }
