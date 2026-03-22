@@ -2,11 +2,12 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 	// SQLite Setup
 	// Open database connection
 	// SQLite creates the file if it does not exist
-	db, err := sql.Open("sqlite3", "./app.db")
+	db, err := sql.Open("sqlite", "./app.db")
 	if err != nil {
 		log.Fatalf("Failed to open database: %v", err)
 	}
@@ -52,7 +53,12 @@ func main() {
 	// Main Code Section
 
 	// Handlers
+	// Serve assets from the static directory under /static/ URL path.
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
 	// homepage handler
+	// function takes two parameters: ‘w’, which is an http.ResponseWriter that is used to write the response back to the client,
+	// and ‘r’, which is an http.Request that contains information about the incoming request.
 	home := func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "templates/index.html")
 	}
@@ -71,6 +77,7 @@ func main() {
 
 	// Routes
 	// route to homepage
+	// HandleFunc takes an address and a function
 	http.HandleFunc("/", home)
 	// register route
 	http.HandleFunc("/register", register)
@@ -79,10 +86,14 @@ func main() {
 	// tilefrenzy route
 	http.HandleFunc("/tilefrenzy", tilefrenzy)
 
-	// render templates??
+	// API Handlers
+	send_text := func(w http.ResponseWriter, r *http.Request) {
+		res, err := http.Get()
+	}
 
 	// API Endpoints
+	http.HandleFunc("/send_text", send_text)
 
-	// Listening port for server, code after this WILL NOT RUN
-	http.ListenAndServe(":8080", nil)
+	fmt.Print("Please connect at: http://localhost:8080") // simple print statement letitng use know where site is hosted
+	http.ListenAndServe(":8080", nil)                     // Listening port for server, code after this WILL NOT RUN
 }

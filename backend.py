@@ -64,13 +64,6 @@ def render_template_page():
     return render_template(template)
 
 
-# When homepage button is pressed this will just return some text to our terminal
-@app.get("/button_pressed")
-def button_pressed():
-    print("Button Pressed on Frontend!")
-    return "status: ok"
-
-
 # When text is sent from out homepage this will grab the text sent from our frontend and print out a decoded version of it to our terminal
 @app.route("/send_text", methods=["POST"])
 def send_text():
