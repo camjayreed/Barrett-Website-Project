@@ -5,7 +5,7 @@ function capitalize(str) {
 
 // Display current logged in user
 async function check_current_user() {
-  const response = await fetch("http://127.0.0.1:5000/current_user", {
+  const response = await fetch("http://localhost:8080/current_user", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
   });
@@ -35,7 +35,7 @@ async function check_current_user() {
 
 function logout() {
   console.log("Logged Out");
-  const response = fetch("http://127.0.0.1:5000/logout", {
+  const response = fetch("http://localhost:8080/logout", {
     method: "POST",
   });
 }
@@ -82,7 +82,7 @@ async function upload_article() {
       const link = document.getElementById("article_link").value;
 
       // grabbing username for our article
-      const response = await fetch("http://127.0.0.1:5000/current_user", {
+      const response = await fetch("http://localhost:8080/current_user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });
@@ -97,9 +97,9 @@ async function upload_article() {
 
       const token = localStorage.getItem("access_token");
       console.log("UPLOAD token:", token);
-      console.log("UPLOAD url:", "http://127.0.0.1:5000/article_upload");
+      console.log("UPLOAD url:", "http://localhost:8080/article_upload");
 
-      fetch("http://127.0.0.1:5000/article_upload", {
+      fetch("http://localhost:8080/article_upload", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -148,14 +148,14 @@ function apibuttonpress() {
   time = 10
   intervalId ??= setInterval(timer, 1000);
 
-  fetch("http://127.0.0.1:5000/button_pressed");
+  fetch("http://localhost:8080/button_pressed");
 }
 
 // Homepage send text api
 document.getElementById("text_send").addEventListener("click", apisendtext);
 function apisendtext() {
   const text_data = document.getElementById("text_box").value;
-  fetch("http://127.0.0.1:5000/send_text", {
+  fetch("http://localhost:8080/send_text", {
     method: "POST",
     body: text_data,
   });
@@ -164,7 +164,7 @@ function apisendtext() {
 document.getElementById("test_button").addEventListener("click", grab_articles);
 async function grab_articles() {
   const token = localStorage.getItem("access_token");
-  const response = await fetch("http://127.0.0.1:5000/article_posting", {
+  const response = await fetch("http://localhost:8080/article_posting", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -233,7 +233,7 @@ function delete_article(event) {
 
   console.log("delete article:", articleId);
 
-  fetch("http://127.0.0.1:5000/article_delete", {
+  fetch("http://localhost:8080/article_delete", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

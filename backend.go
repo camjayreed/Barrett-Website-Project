@@ -2,8 +2,8 @@ package main
 
 import (
 	"database/sql"
-	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 
@@ -87,13 +87,21 @@ func main() {
 	http.HandleFunc("/tilefrenzy", tilefrenzy)
 
 	// API Handlers
+	// Send Text Handler
 	send_text := func(w http.ResponseWriter, r *http.Request) {
-		res, err := http.Get()
+		data, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "bad request", http.StatusBadRequest)
+			return
+		}
+
+		fmt.Println(string(data))    // prints our resulting data to console
+		_, _ = w.Write([]byte("ok")) // returns ok to the browser
 	}
 
 	// API Endpoints
 	http.HandleFunc("/send_text", send_text)
 
-	fmt.Print("Please connect at: http://localhost:8080") // simple print statement letitng use know where site is hosted
-	http.ListenAndServe(":8080", nil)                     // Listening port for server, code after this WILL NOT RUN
+	fmt.Println("Please connect at: http://localhost:8080") // simple print statement letitng use know where site is hosted
+	http.ListenAndServe(":8080", nil)                       // Listening port for server, code after this WILL NOT RUN
 }

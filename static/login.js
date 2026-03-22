@@ -12,7 +12,7 @@ async function api_login_real() {
     password: password,
   };
 
-  const response = await fetch("http://127.0.0.1:5000/real_login", {
+  const response = await fetch("http://localhost:8080/real_login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(login),
