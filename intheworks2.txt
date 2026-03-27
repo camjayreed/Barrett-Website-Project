@@ -23,3 +23,14 @@ why am i rambling you may ask? cause its 7:32 am on 3/20/26 and im sleep deprive
 
 
 testing commit thingy
+
+3/27/26
+coming back after work weekend to this project. just wanted to give my little thoughts and update, plans for today etc.
+so first off golang is really weird, im picking it up more and more for sure, it doesnt feel fast.
+i feel like ive understood the error handling. but writing pretty much anything is still weird, mostly because i feel like most
+of what ive done is lookup how to write x, paste and understand x. so that leaves me feeling very uneasy about writing the lang still
+but in terms of reading it i think im getting much better, will keep working on it so ye.
+
+
+uhh alright, feel like ive got most of what i can out of this project tbh, i could finish the last few functions but im lazy
+and id rather go build something interesting so uhh yea bye bye :)
